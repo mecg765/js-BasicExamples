@@ -5,12 +5,14 @@ var dib = document.getElementById("dibujoCanvas"), dib2 = document.getElementByI
 //dibujarLinea(lienzo1, "orange", 300, 10, 10, 220);
 
 lienzo2 = dib2.getContext("2d");
-dibujaGrafica_IzquierdaInferior(lienzo2, "blue", 0, 500, 50, 10);
-dibujaGrafica_DerechaSuperior(lienzo2, "blue", 0, 500, 50, 10);
+var userLn = parseInt(prompt("Ingresa la cantidad de líneas para el dibujo"));
 
-function dibujaGrafica_IzquierdaInferior(lienzo, color, inicio, final, lineas, incremento) {
+dibujaGrafica_Cuadrado(lienzo2, "blue", 0, 500, userLn, 10);
+//dibujaGrafica_DerechaSuperior(lienzo2, "blue", 0, 500, 50, 10);
+
+function dibujaGrafica_Cuadrado(lienzo, color, inicio, final, lineas, incremento) {
     var i=0;
-    var varInicio = 0, varFinal = incremento, xinicio=0, yfinal=incremento;
+    var varInicio = 0, varFinal = incremento, varFinalDec = final;
     var color2 = "purple", color3 = "blue";
     for (i=0; i < lineas; i++) {
         if (i % 2 == 0) {
@@ -21,9 +23,12 @@ function dibujaGrafica_IzquierdaInferior(lienzo, color, inicio, final, lineas, i
         }
 
         dibujarLinea(lienzo, color, inicio, varInicio, varFinal, final);
-        //dibujarLinea(lienzo, color, varInicio, inicio, final, varFinal);
+        dibujarLinea(lienzo, color, varInicio, inicio, final, varFinal);
+        dibujarLinea(lienzo, color, inicio, varFinal, varFinalDec, inicio);
+        dibujarLinea(lienzo, color, varInicio, final, final, varFinalDec);
         varInicio += incremento; // o yinicio=10*l
         varFinal += incremento; // o xfinal=10*(l+1);
+        varFinalDec -= incremento; // o xfinal=10*(l+1);
         console.log("Linea " + i);
     }
     DrawFrame(lienzo, "red", 0, 500);
