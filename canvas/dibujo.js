@@ -5,27 +5,52 @@ var dib = document.getElementById("dibujoCanvas"), dib2 = document.getElementByI
 //dibujarLinea(lienzo1, "orange", 300, 10, 10, 220);
 
 lienzo2 = dib2.getContext("2d");
-dibujaGrafica(lienzo2, "blue", 0, 500, 50, 10);
+dibujaGrafica_IzquierdaInferior(lienzo2, "blue", 0, 500, 50, 10);
+dibujaGrafica_DerechaSuperior(lienzo2, "blue", 0, 500, 50, 10);
 
-function dibujaGrafica(lienzo, color, inicio, final, lineas, incremento) {
-    var l = 0;
-    var yinicio = 0, xfinal = incremento;
+function dibujaGrafica_IzquierdaInferior(lienzo, color, inicio, final, lineas, incremento) {
+    var i=0;
+    var varInicio = 0, varFinal = incremento, xinicio=0, yfinal=incremento;
     var color2 = "purple", color3 = "blue";
-    while (l < lineas) {
-        if (l % 2 == 0) {
+    for (i=0; i < lineas; i++) {
+        if (i % 2 == 0) {
             color = color2;
         }
         else {
             color = color3;
         }
 
-        dibujarLinea(lienzo, color, inicio, yinicio, xfinal, final);
-        yinicio += incremento; // o yinicio=10*l
-        xfinal += incremento; // o xfinal=10*(l+1);
-        console.log("Linea " + l);
-        l++;
+        dibujarLinea(lienzo, color, inicio, varInicio, varFinal, final);
+        //dibujarLinea(lienzo, color, varInicio, inicio, final, varFinal);
+        varInicio += incremento; // o yinicio=10*l
+        varFinal += incremento; // o xfinal=10*(l+1);
+        console.log("Linea " + i);
     }
     DrawFrame(lienzo, "red", 0, 500);
+}
+
+function dibujaGrafica_DerechaSuperior(lienzo, color, inicio, final, lineas, incremento) {
+    var i=0, xinicio = 0, yfinal = incremento;
+    for (i=0; i < lineas; i++) {
+        color = GetColor(i, color);
+
+        dibujarLinea(lienzo, color, xinicio, inicio, final, yfinal);
+        xinicio += incremento; // o xinicio=10*l
+        yfinal += incremento; // o yfinal=10*(l+1);
+        console.log("Linea " + i);
+    }
+    DrawFrame(lienzo, "red", 0, 500);
+}
+
+function GetColor(i, color) {
+    var color2 = "purple", color3 = "blue";
+    if (i % 2 == 0) {
+        color = color2;
+    }
+    else {
+        color = color3;
+    }
+    return color;
 }
 
 function DrawFrame(lienzo, color, puntoInicio, puntoFinal) {
