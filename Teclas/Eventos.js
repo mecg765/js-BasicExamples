@@ -14,10 +14,6 @@ document.addEventListener("keydown", dibujarTeclado);
 //document.addEventListener("mouseup", dibujarMouse);
 //document.addEventListener("mousemove", dibujarMouse);
 
-document.addEventListener("mousedown", activeDraw);
-document.addEventListener("mouseup", activeDraw);
-document.addEventListener("mousemove", dibujarMouse2);
-
 var square = document.getElementById("area");
 var paper = square.getContext("2d");
 var x = 150;
@@ -25,6 +21,10 @@ var y = 150;
 //exercise
 var clickDown = false;
 var step = 2;
+
+square.addEventListener("mousedown", activeDraw);
+square.addEventListener("mouseup", activeDraw);
+square.addEventListener("mousemove", dibujarMouse2);
 
 dibujarLinea(paper, "blue", 148, 148, 151, 151);
 
