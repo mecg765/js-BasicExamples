@@ -36,7 +36,8 @@ function dibujaGrafica_Cuadrado(lienzo, color, inicio, final, lineas, incremento
             color = color3;
         }
 
-        dibujarLinea(lienzo, color, inicio, varInicio, varFinal, final);
+        dibujarLinea(lienzo, color, inicio,
+             varInicio, varFinal, final);
         dibujarLinea(lienzo, color, varInicio, inicio, final, varFinal);
         dibujarLinea(lienzo, color, inicio, varFinal, varFinalDec, inicio);
         dibujarLinea(lienzo, color, varInicio, final, final, varFinalDec);
